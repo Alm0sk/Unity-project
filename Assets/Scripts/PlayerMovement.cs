@@ -66,6 +66,9 @@ public class PlayerMovement : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
         velocity.x = horizontal * moveSpeed; // Modifie uniquement la vitesse horizontale
         rb.linearVelocity = velocity;
+
+        HandleMovement();
+        HandleShooting();
     }
 
     // Fonctions appelées par les boutons
@@ -114,4 +117,36 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    public GameObject projectilePrefab; // Préfab du projectile
+    public Transform firePoint;         // Point d'où part le projectile
+    public float fireRate = 0.5f;       // Intervalle entre deux tirs
+
+    private float nextFireTime = 0f;
+
+  
+
+    void HandleMovement()
+    {
+        // Logique de déplacement horizontale si nécessaire
+        float move = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * move * Time.deltaTime * 5f);
+    }
+
+    void HandleShooting()
+    {
+        // Détection du toucher sur mobile
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
+        {
+            Shoot();
+            nextFireTime = Time.time + fireRate;
+        }
+    }
+
+    void Shoot()
+    {
+        // Instancie un projectile et le positionne au "firePoint"
+        Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+    }
+
 }
