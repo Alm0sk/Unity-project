@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator.SetBool("OnceTime", true);
     }
 
     private void FixedUpdate()
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+
+
+/// ////////////////////////////////////////////////
 
 
     // Fonctions appelées par les boutons
