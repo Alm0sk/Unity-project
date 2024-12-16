@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GestionScenes : MonoBehaviour
 {
-    int numberScene = DataPersistance.numberScenes;
+    //int numberScene = DataPersistance.numberScenes;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-  
+    int scene = 1;
 
     private void Start()
     {
@@ -16,13 +16,25 @@ public class GestionScenes : MonoBehaviour
     {
         
     }
-    public void LoadScene()
+    public void LoadSceneBoutonJouer()
     {
-        Debug.Log("Scenes/Scene"+numberScene);        
-        SceneManager.LoadScene("Scenes/Scene"+numberScene);
-        numberScene++;
+        Debug.Log("Scene 1");        
+        SceneManager.LoadScene(scene);
+        /*numberScene++;
         DataPersistance.numberScenes=numberScene;
         Debug.Log(DataPersistance.numberScenes);
-        
+        */
     }
+
+    public void LoadSceneBoutonRejouer()
+    {
+        Debug.Log("Scene 1"); 
+        DataPersistance.Score=0;       
+        SceneManager.LoadScene(1);
+        /*numberScene++;
+        DataPersistance.numberScenes=numberScene;
+        Debug.Log(DataPersistance.numberScenes);
+        */
+    }
+
 }
