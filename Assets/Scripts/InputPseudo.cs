@@ -22,7 +22,7 @@ public class InputPseudo : MonoBehaviour
         if (inputField != null)
         {
             DataPersistance.Pseudo = inputField.text; // Récupère le texte saisi
-            Debug.Log("Joueur : " + DataPersistance.Pseudo); // Affiche dans la console
+            //Debug.Log("Joueur : " + DataPersistance.Pseudo); // Affiche dans la console
         }
     }
 }

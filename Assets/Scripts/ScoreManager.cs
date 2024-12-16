@@ -9,20 +9,20 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
 
-        // Initialise le score s'il n'est pas déjà défini
+        // Initialise le score s'il n'est pas dï¿½jï¿½ dï¿½fini
         if (DataPersistance.Score < 0)
         {
             DataPersistance.Score = 0;
         }
 
-        // Met à jour le texte affiché à l'écran
+        // Met ï¿½ jour le texte affichï¿½ ï¿½ l'ï¿½cran
         UpdateScoreUI();
     }
 
     public void AddScore(int points)
     {
         DataPersistance.Score += points;
-        Debug.Log("Score ajouté : " + points + ", Score total : " + DataPersistance.Score);
+        Debug.Log("Score ajoutï¿½ : " + points + ", Score total : " + DataPersistance.Score);
 
         UpdateScoreUI();
     }
@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        // Affiche le score mis à jour dans le texte UI
-        scoreText.text = "Score: " + DataPersistance.Score.ToString();
+        // Affiche le score mis ï¿½ jour dans le texte UI
+        scoreText.text = "Score de " + DataPersistance.Pseudo + " : " + DataPersistance.Score.ToString();
     }
 }

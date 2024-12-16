@@ -5,20 +5,49 @@ public class Enemy : MonoBehaviour
 {
     public int health = 1; // Points de vie de l'ennemi
 
-    public int points = 10; // Points ajoutés au score quand détruit
+    public int points = 10; // Points ajoutï¿½s au score quand dï¿½truit
+    public SpriteRenderer sprinteRenderer;
 
+    // Mouvement de l'ennemi
+    public bool isMoving; // L'ennemi est-il en mouvement ?
+    public float moveSpeed = 2f;
+
+    public float moveRange = 5f;
     private ScoreManager scoreManager;
-
+    private Vector3 startPosition;
+    private bool movingRight = true;
 
     private void Start()
     {
-        // Trouve dynamiquement le ScoreManager dans la scène
+        // Trouve dynamiquement le ScoreManager dans la scï¿½ne
         scoreManager = FindObjectOfType<ScoreManager>();
+        startPosition = transform.position;
+    }
 
-        if (scoreManager == null)
+
+    private void FixedUpdate()
+    {
+        if (isMoving)
         {
-            Debug.LogError("ScoreManager introuvable dans la scène !");
+            // DÃ©placement de l'ennemi
+            if (movingRight)
+            {
+                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                if (transform.position.x >= startPosition.x + moveRange)
+                {
+                    movingRight = false;
+                }
+            }
+            else
+            {
+                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                if (transform.position.x <= startPosition.x - moveRange)
+                {
+                    movingRight = true;
+                }
+            }
         }
+        Flip(movingRight);
     }
 
 
@@ -40,6 +69,19 @@ public class Enemy : MonoBehaviour
         }
 
         Debug.Log("Enemy Killed!");
-        Destroy(gameObject); // Détruit l'ennemi
+        Destroy(gameObject); // Dï¿½truit l'ennemi
+    }
+
+    void Flip(bool _movingRight)
+    {
+        // Inverse la direction du sprite
+        if (_movingRight)
+        {
+            sprinteRenderer.flipX = false;
+        }
+        else if (!_movingRight)
+        {
+            sprinteRenderer.flipX = true;
+        }
     }
 }

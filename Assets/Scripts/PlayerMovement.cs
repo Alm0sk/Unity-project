@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer sprinteRenderer;
     // Variables internes
-    private bool isMovingRight = false;
+    public bool isMovingRight = false;
     private bool isMovingLeft = false;
     private bool isGrounded = false; // Nécessite une gestion pour savoir quand on est au sol
 
