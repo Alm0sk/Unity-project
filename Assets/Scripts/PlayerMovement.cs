@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+              
         // Gestion du déplacement horizontal
         float horizontal = 0f;
         if (isMovingRight) horizontal = 1f;
@@ -74,28 +75,40 @@ public class PlayerMovement : MonoBehaviour
     // Fonctions appelées par les boutons
     public void MoveRightDown()
     {
+        if (Time.timeScale == 0)
+                return;
         isMovingRight = true;
     }
 
     public void MoveRightUp()
     {
+        if (Time.timeScale == 0)
+                return;
         isMovingRight = false;
     }
 
     public void MoveLeftDown()
     {
+        if (Time.timeScale == 0)
+                return;
         isMovingLeft = true;
     }
 
     public void MoveLeftUp()
     {
+        if (Time.timeScale == 0)
+                return;
         isMovingLeft = false;
     }
 
     public void Jump()
     {
+        
+        if (Time.timeScale == 0)
+                return;
         if (isGrounded)
-        {
+        {            
+            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
@@ -128,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
+      
         // Logique de déplacement horizontale si nécessaire
         float move = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * move * Time.deltaTime * 5f);
@@ -146,6 +160,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Instancie un projectile et le positionne au "firePoint"
         Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-    }
+    }   
 
 }
