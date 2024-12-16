@@ -3,6 +3,11 @@
 public class DataPersistance
 {
     public static string Pseudo = ""; // Variable partagée entre les scènes
+<<<<<<< HEAD
+=======
+
+    public static int Score = 0;
+>>>>>>> main
     public static int numberScenes = 1;
       
 } 
@@ -17,4 +22,7 @@ public class DataPersistance
     {
         
     }*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
