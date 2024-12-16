@@ -12,7 +12,7 @@ public class AfficherPseudo : MonoBehaviour
         if (pseudoText != null)
         {
             // Récupère le pseudo depuis DataPersistance et l'affiche dans le Text
-            pseudoText.text = "Score de " + DataPersistance.Pseudo + " !";
+            pseudoText.text = "Score de " + DataPersistance.Pseudo + " : " + DataPersistance.Score +  " !";
         }
         else
         {
