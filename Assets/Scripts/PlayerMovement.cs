@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
 
         HandleMovement();
-        HandleShooting();
+        
     }
 
     // Fonctions appelées par les boutons
@@ -133,10 +133,9 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(Vector3.right * move * Time.deltaTime * 5f);
     }
 
-    void HandleShooting()
+    public void OnShootButtonPressed()
     {
-        // Détection du toucher sur mobile
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime)
         {
             Shoot();
             nextFireTime = Time.time + fireRate;

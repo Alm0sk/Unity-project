@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collision detected with: " + collision.gameObject.name); // Diagnostic
+
         if (collision.CompareTag("Enemy"))
         {
             // Inflige des dégâts à l'ennemi
@@ -26,9 +28,9 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject); // Détruit le projectile
         }
 
-        // Détruit le projectile lorsqu'il touche autre chose (optionnel)
-        if (collision.CompareTag("Ground") || collision.CompareTag("Platform"))
+        if (collision.CompareTag("Ground"))
         {
+            // Détruit le projectile lorsqu'il touche le sol
             Destroy(gameObject);
         }
     }
