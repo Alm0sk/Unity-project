@@ -1,43 +1,3 @@
-// using UnityEngine;
-
-// public class PlayerMovement : MonoBehaviour
-// {
-//     public float moveSpeed = 5f;
-//     public Rigidbody2D rb;
-//     private Vector2 velocity = Vector2.zero;
-
-//     void Start()
-//     {
-//         rb = GetComponent<Rigidbody2D>();
-//     }
-
-//     void FixedUpdate()
-//     {
-
-//         // Movements
-
-//         float horizontalMovement = 0f;
-
-//         if (Input.GetKey(KeyCode.Q))
-//         {
-//             horizontalMovement = 200;
-//         }
-//         else if (Input.GetKey(KeyCode.D))
-//         {
-//             horizontalMovement = -200;
-//         }
-        
-//         MovePlayer(horizontalMovement);
-//     }
-    
-//     void MovePlayer(float _horizontalMovement)
-//     {
-//         Vector2 targetVelocity = new(_horizontalMovement, rb.linearVelocity.y);
-//         rb.linearVelocity = Vector2.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, .05f);
-//     }
-// }
-
-
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -45,7 +5,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
     private Rigidbody2D rb;
-
+    public Animator animator;
+    public SpriteRenderer sprinteRenderer;
     // Variables internes
     private bool isMovingRight = false;
     private bool isMovingLeft = false;
@@ -54,9 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator.SetBool("OnceTime", true);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
               
         // Gestion du déplacement horizontal
@@ -64,13 +26,23 @@ public class PlayerMovement : MonoBehaviour
         if (isMovingRight) horizontal = 1f;
         if (isMovingLeft) horizontal = -1f;
 
+        Flip(horizontal);
+
         Vector2 velocity = rb.linearVelocity;
         velocity.x = horizontal * moveSpeed; // Modifie uniquement la vitesse horizontale
         rb.linearVelocity = velocity;
 
+        animator.SetFloat("Vertical_speed", rb.linearVelocity.y);
+        animator.SetBool("Grounded", isGrounded);
+
         HandleMovement();
         
     }
+
+
+
+/// ////////////////////////////////////////////////
+
 
     // Fonctions appelées par les boutons
     public void MoveRightDown()
@@ -161,5 +133,18 @@ public class PlayerMovement : MonoBehaviour
         // Instancie un projectile et le positionne au "firePoint"
         Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
     }   
+
+    void Flip(float _horizontal)
+    {
+        // Inverse la direction du sprite
+        if (_horizontal > 0.1f)
+        {
+            sprinteRenderer.flipX = false;
+        }
+        else if (_horizontal < -0.1f)
+        {
+            sprinteRenderer.flipX = true;
+        }
+    }
 
 }
