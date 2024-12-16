@@ -18,8 +18,8 @@ public class GestionScenes : MonoBehaviour
     }
     public void LoadSceneBoutonJouer()
     {
-        Debug.Log("Scene 1");        
-        SceneManager.LoadScene(scene);
+        //Debug.Log("Scene 1");        
+        SceneManager.LoadScene("Level_01"); // TODO: rediriger vers la scène de départ
         /*numberScene++;
         DataPersistance.numberScenes=numberScene;
         Debug.Log(DataPersistance.numberScenes);
@@ -28,9 +28,9 @@ public class GestionScenes : MonoBehaviour
 
     public void LoadSceneBoutonRejouer()
     {
-        Debug.Log("Scene 1"); 
+        //Debug.Log("Scene 1"); 
         DataPersistance.Score=0;       
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0); // TODO: rediriger vers la scène de départ
         /*numberScene++;
         DataPersistance.numberScenes=numberScene;
         Debug.Log(DataPersistance.numberScenes);
