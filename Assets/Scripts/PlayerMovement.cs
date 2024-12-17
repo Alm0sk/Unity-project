@@ -7,15 +7,32 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer sprinteRenderer;
+    
     // Variables internes
     public bool isMovingRight = false;
     private bool isMovingLeft = false;
     private bool isGrounded = false; // Nécessite une gestion pour savoir quand on est au sol
 
+
+    public AudioSource audioSource_jump; // Référence à l'AudioSource
+    public AudioSource audioSource_shoot;
+    public AudioClip jumpSound;
+    public AudioClip shootSound;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator.SetBool("OnceTime", true);
+
+        if (audioSource_jump == null)
+        {
+            audioSource_jump = GetComponent<AudioSource>();
+        }
+
+        if (audioSource_shoot == null)
+        {
+            audioSource_shoot = GetComponent<AudioSource>();
+        }
     }
 
     private void FixedUpdate()
@@ -82,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         {            
             
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            audioSource_jump.PlayOneShot(jumpSound);
         }
     }
 
@@ -105,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject projectilePrefab; // Préfab du projectile
     public Transform firePoint;         // Point d'où part le projectile
-    public float fireRate = 0.5f;       // Intervalle entre deux tirs
+    public float fireRate = 0.2f;       // Intervalle entre deux tirs
 
     private float nextFireTime = 0f;
 
@@ -132,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Instancie un projectile et le positionne au "firePoint"
         Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        audioSource_shoot.PlayOneShot(shootSound);
     }   
 
     void Flip(float _horizontal)
