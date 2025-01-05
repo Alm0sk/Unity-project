@@ -6,8 +6,8 @@
 - Remi PEREZ
 - Ouadia BEN KHALIFA
 
-L'APK du projet est disponible dans le dossier `APK` du projet. [Lien de l'APK](APK/unityFinal.apk)
+L'APK du projet est disponible dans le dossier `APK` du projet. [Lien de l'APK](APK_du_projet//unityFinal.apk)
 
 ### Video de présentation du projet :
 
-[![Vidéo de présentation](Medias/image.png)](Medias/unity-project_compresse.mp4.mp4)
+[![Vidéo de présentation](Medias/image.png)](Medias/unity-project_compresse.mp4)
